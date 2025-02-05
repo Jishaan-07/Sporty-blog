@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Play", serif;
+ }
+ .unveil{
+    font-family: "Tourney", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100; }
+      .carousel-overlay {
+         position: relative;
+       }
+       
+       .carousel-overlay img {
+         filter: brightness(70%); /* Darkens image for better text visibility */
+       }
+       
+       .carousel-caption-custom {
+         position: absolute;
+         bottom: 20%;
+         left: 50%;
+         transform: translateX(-50%);
+         text-align: center;
+         width: 80%;
+         background: rgba(0, 0, 0, 0.5); /* Dark overlay behind text */
+         padding: 15px;
+         border-radius: 10px;
+       }
+       
