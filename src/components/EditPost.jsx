@@ -10,8 +10,8 @@ const EditPost = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <button onClick={handleShow} className="  bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-800 rounded">
-                Edit Blog
+            <button onClick={handleShow} className="  bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-1 px-2 border-b-4 border-yellow-700 hover:border-yellow-800 rounded">
+            <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <Modal size='lg'
                 show={show}

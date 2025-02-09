@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
-import upload from '../assets/upload.jpg'
+import profileUpload from '../assets/ProfileUpload.jpg'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 const EditProfile = () => {
@@ -23,6 +23,14 @@ const EditProfile = () => {
                     <Modal.Title className='fs-2 fw-bolder'><span className='text-yellow-400'>Edit </span> Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                      <div className='d-flex justify-content-center align-items-center'>
+                                            <label>
+                                                <input style={{ display: 'none' }} type="file" />
+                                                <img width={'400px'} src={profileUpload} alt="" />
+                                            </label>
+                                        </div>
+                                        <div className="text-danger text-center fw-bolder">Upload only (jpeg,png,jpg) files only!!!</div>
+                    
                     <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInputusername">
                             <Form.Label>Username</Form.Label>

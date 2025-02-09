@@ -19,8 +19,7 @@ const MyProfile = () => {
           <div className='me-auto '>
             <h1 className='fs-3 fw-bold py-1'>Jishan</h1>
             <h2 className='fs-4 py-1'>mohdjishan@gmail.com</h2>
-            <h2 className='fs-4 py-1'>+91 1234567890</h2>
-
+ 
           </div>
           <div className="d-flex justify-content-evenly flex-wrap mx-3 mt-5">
             <EditProfile/>

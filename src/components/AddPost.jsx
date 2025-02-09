@@ -25,7 +25,7 @@ const AddPost = () => {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <div className='d-flex justify-content-center align-items-center'>
+                    <div  className='d-flex justify-content-center align-items-center'>
                         <label>
                             <input style={{ display: 'none' }} type="file" />
                             <img width={'400px'} src={upload} alt="" />

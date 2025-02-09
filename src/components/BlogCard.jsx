@@ -12,19 +12,25 @@ import user from '../assets/icon.png'
 import boxing from '../assets/boxing.jpg'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import EditPost from './EditPost';
+import ViewBlogs from './ViewBlogs';
 export default function BlogCard() {
     return (
         <Card className='my-3 mx-3' sx={{ maxWidth: 345 }}>
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="author">
-                        <img src={user} alt="" />
-                    </Avatar>
-                }
-
-                title="Jishan"
-                subheader="29/07/2025"
-            />
+           <div className='d-flex justify-between align-items-center'>
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="author">
+                            <img src={user} alt="" />
+                        </Avatar>
+                    }
+    
+                    title="Jishan"
+                    subheader="29/07/2025"
+                    
+                />
+                <EditPost/>
+           </div>
             <CardMedia
                 component="img"
                 height="194"
@@ -41,11 +47,8 @@ export default function BlogCard() {
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
                 </IconButton>
-                <Link className='ms-auto' to={'/view-post/:id'}>
-                    <button className="  bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-800 rounded">
-                        View More
-                    </button>  
-                </Link>    
+                
+                <ViewBlogs/>   
                       </CardActions>
         </Card>
     );

@@ -19,6 +19,7 @@ import BlogCard from '../components/BlogCard';
 
 
 import Carousel from 'react-bootstrap/Carousel';
+import ViewBlogs from '../components/ViewBlogs';
  
 
 
@@ -91,7 +92,8 @@ const Home = () => {
                   />
                   <small className="text-muted">Jishan</small>
                 </div>
-                <Link to={'/view-post/:id'}> <Button className='text-white border-yellow-400' variant="warning">View Blog</Button></Link>              </Card.Body>
+                <ViewBlogs/>
+                  </Card.Body>
             </Card>
 
             <Card className="shadow mx-2 mb-3" style={{ width: "15rem", borderRadius: "20px" }}>
@@ -110,7 +112,7 @@ const Home = () => {
                   />
                   <small className="text-muted">Jishan</small>
                 </div>
-                <Link to={'/view-post/:id'}> <Button className='text-white border-yellow-400' variant="warning">View Blog</Button></Link>              </Card.Body>
+                <ViewBlogs/>                            </Card.Body>
             </Card>
 
             <Card className="shadow mx-2 mb-3" style={{ width: "15rem", borderRadius: "20px" }}>
@@ -131,8 +133,7 @@ const Home = () => {
                                     
 
                 </div>
-                <Link to={'/view-post/:id'}> <Button className='text-white border-yellow-400' variant="warning">View Blog</Button></Link>
-              </Card.Body>
+                <ViewBlogs/>              </Card.Body>
             </Card>
           </div>
         </div>
