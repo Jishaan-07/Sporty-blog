@@ -5,8 +5,7 @@ import AddPost from '../components/AddPost'
 import EditProfile from '../components/EditProfile'
 import EditPost from '../components/EditPost'
 
-import BlogCard from '../components/BlogCard'
-import { getUserBlogAPI } from '../services/allAPI'
+ import { getUserBlogAPI } from '../services/allAPI'
 
 
 import icon from "../assets/icon.png";
@@ -23,7 +22,7 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import user from '../assets/icon.png'
 import SERVER_BASE_URL from '../services/serverUrl';
-import { addBlogContext } from '../Contexts/ContextShare'
+import { addBlogContext, editBlogContext } from '../Contexts/ContextShare'
 
 
 
@@ -32,6 +31,7 @@ const MyProfile = () => {
 
   // blog key in props will hold blog data 
    const { addBlogResponse, setAddBlogResponse } = useContext(addBlogContext)
+   const { editBlogResponse } = useContext(editBlogContext);
   const [show, setShow] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
 
@@ -46,7 +46,7 @@ const MyProfile = () => {
       setusername(JSON.parse(sessionStorage.getItem("user")).username.split(" ")[0]
       )
     }
-  }, [addBlogResponse])
+  }, [addBlogResponse,editBlogResponse])
 
 
   const handleClose = () => {
