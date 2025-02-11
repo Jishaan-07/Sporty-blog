@@ -1,33 +1,82 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import landingImg from '../assets/landing.png';
 import card from '../assets/card.png';
 import icon from '../assets/icon.png';
 import group from '../assets/group.png';
-import staduim from '../assets/staduim.png';
-import boxing from '../assets/boxing.jpg';
 import car1 from '../assets/car1.jpg';
 import car2 from '../assets/car2.jpg';
 import car4 from '../assets/car4.jpg';
-
 import sponser from '../assets/sponser.png';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+ import Card from 'react-bootstrap/Card';
 import BlogCard from '../components/BlogCard';
-  
-
-
 import Carousel from 'react-bootstrap/Carousel';
 import ViewBlogs from '../components/ViewBlogs';
+import { getHomeBestBlogAPI, getHomeBlogAPI } from '../services/allAPI';
+import SERVER_BASE_URL from '../services/serverUrl';
  
 
 
 const Home = () => {
-
+  const[homeBlogs,setHomeBlogs]=useState([])
+  const[homeBestBlogs,setHomeBestBlogs]=useState([])
+  const navigate = useNavigate()
   const [isLogin,setIsLogin]=useState(false)
+  console.log(homeBestBlogs);
+  console.log(homeBlogs);
+  
+  
+
+useEffect(()=>{
+  getHomeBlog()
+  getHomeBestBlog()
+  if(sessionStorage.getItem("token")){
+    setIsLogin(true)
+  }else{
+    setIsLogin(false)
+  }
+},[])
 
 
+  const getHomeBlog = async()=>{
+    try {
+      const result = await getHomeBlogAPI()
+      console.log(result);
+      if(result.status==200){
+        setHomeBlogs(result.data)
+      }
+      
+    } catch (err) {
+      console.log(err);
+      
+    }
+  }
+
+  const getHomeBestBlog = async () => {
+    try {
+      const result = await getHomeBlogAPI(); // Fetch all blogs
+      if (result.status === 200) {
+        let blogs = result.data;
+        
+        // Shuffle the array to get random blogs
+        blogs = blogs.sort(() => 0.5 - Math.random());
+  
+        // Select the first few (e.g., 3) blogs
+        setHomeBestBlogs(blogs.slice(0, 3));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
+  const handleNavigateToAllBlog=()=>{
+    if(sessionStorage.getItem("token")){
+      navigate('/all-post')
+    }else{
+      alert("Please Login To See All Latest Blogs")
+    }
+  }
 
   return (
     <>
@@ -47,13 +96,13 @@ const Home = () => {
 
         { isLogin ? 
          <Link
-            to="/add-post"
+            to="/my-profile/:id"
             className="btn btn-warning shadow-lg text-black text-sm sm:text-lg md:text-2xl px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full mt-6 transition-all transform hover:scale-105 hover:bg-yellow-500"  > Start Your Sports Blog
           </Link>
           :
           <Link
           to="/register"
-          className="btn btn-warning shadow-lg text-black text-sm sm:text-lg md:text-2xl px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full mt-6 transition-all transform hover:scale-105 hover:bg-yellow-500"  > Start Your Sports Blog
+          className="btn btn-warning shadow-lg text-black text-sm sm:text-lg md:text-2xl px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full mt-6 transition-all transform hover:scale-105 hover:bg-yellow-500"  > Get Started
         </Link>
           }
 
@@ -76,65 +125,32 @@ const Home = () => {
 
           <div className="col-lg-6 d-flex justify-content-center align-items-center flex-wrap">
 
-            <Card className="shadow mx-2 mb-3" style={{ width: "15rem", borderRadius: "20px" }}>
-              <Card.Img variant="top" src={card} alt="Blog Image" />
-              <Card.Body>
-                <Card.Title>BVB to Bankrupt</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, laborum.
-                </Card.Text>
-                <div className="d-flex align-items-center mb-3">
-                  <img
-                    src={icon}
-                    alt="Author"
-                    className="rounded-circle me-2"
-                    style={{ width: "40px", height: "40px", objectFit: "cover" }}
-                  />
-                  <small className="text-muted">Jishan</small>
-                </div>
-                <ViewBlogs/>
-                  </Card.Body>
-            </Card>
+          
 
-            <Card className="shadow mx-2 mb-3" style={{ width: "15rem", borderRadius: "20px" }}>
-              <Card.Img variant="top" src={card} alt="Blog Image" />
-              <Card.Body>
-                <Card.Title>BVB to Bankrupt</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, laborum.
-                </Card.Text>
-                <div className="d-flex align-items-center mb-3">
-                  <img
-                    src={icon}
-                    alt="Author"
-                    className="rounded-circle me-2"
-                    style={{ width: "40px", height: "40px", objectFit: "cover" }}
-                  />
-                  <small className="text-muted">Jishan</small>
-                </div>
-                <ViewBlogs/>                            </Card.Body>
-            </Card>
-
-            <Card className="shadow mx-2 mb-3" style={{ width: "15rem", borderRadius: "20px" }}>
-              <Card.Img variant="top" src={card} alt="Blog Image" />
-              <Card.Body>
-                <Card.Title>BVB to Bankrupt</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, laborum.
-                </Card.Text>
-                <div className="d-flex align-items-center mb-3">
-                  <img
-                    src={icon}
-                    alt="Author"
-                    className="rounded-circle me-2"
-                    style={{ width: "40px", height: "40px", objectFit: "cover" }}
-                  />
-                  <small className="text-muted">Jishan</small>
-                                    
-
-                </div>
-                <ViewBlogs/>              </Card.Body>
-            </Card>
+            {
+              homeBestBlogs.map(projects=>(
+                <Card className="shadow mx-2 mb-3" style={{ width: "15rem", borderRadius: "20px" }}>
+                <Card.Img variant="top" src={`${SERVER_BASE_URL}/uploads/${projects?.blogImage}`} alt="Blog Image" />
+                <Card.Body>
+                  <Card.Title>{projects?.title}</Card.Title>
+                  <Card.Text>
+{projects?.subDecription}                  </Card.Text>
+                  <div className="d-flex align-items-center mb-3">
+                    <img
+                      src={icon}
+                      alt="Author"
+                      className="rounded-circle me-2"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                    <small className="text-muted">{projects?.userId}</small>
+                  </div>
+                           
+                               </Card.Body>
+              </Card>
+              ))
+            
+}
+            
           </div>
         </div>
       </div>
@@ -144,10 +160,15 @@ const Home = () => {
       <div>
         <div className="mt-5 container fw-bolder   d-flex justify-between align-items-center">
           <h1 style={{ fontSize: '70px' }} className='mt-5'><span className='text-yellow-400'>B</span>logs</h1>
-          <Link to={'/all-post'}><p className='mt-5'>view All  <i class="fa-solid fa-hand-point-right"></i> </p></Link> 
+       
+          <button onClick={handleNavigateToAllBlog}>view All  <i class="fa-solid fa-hand-point-right"></i></button>
         </div>
         <div className="container d-flex justify-content-evenly align-items-center flex-wrap mt-5">
-              <BlogCard/>
+             { homeBlogs.map(blog=>(
+              <BlogCard displayData={blog}/>
+
+             ))
+              }
                
 
         </div>
