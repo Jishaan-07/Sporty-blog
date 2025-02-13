@@ -54,3 +54,7 @@ export const deleteBlogAPI = async(id,reqHeader)=>{
 export const editUserAPI = async(reqBody,reqHeader)=>{
     return await commonAPI("PUT",`${SERVER_BASE_URL}/user/edit`,reqBody,reqHeader)
 }
+
+
+
+
