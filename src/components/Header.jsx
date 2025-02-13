@@ -14,9 +14,8 @@ const Header = () => {
   },[])
 
   const handleLogout=()=>{
-    sessionStorage.removeItem("token")
-    setIsLogin(false)
-    navigate("/login")
+    sessionStorage.clear()
+    navigate("/")
   }
 
   return (
