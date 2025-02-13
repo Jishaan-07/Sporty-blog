@@ -67,7 +67,7 @@ const BlogCard = ({ displayData }) => {
                 <img
                   src={blogOwner.profilePic}
                   alt="Profile Pic"
-                  onError={(e) => { e.target.src = defaultUserIcon; }} // Fallback image
+                  onError={(e) => { e.target.src = defaultUserIcon; }}  
                 />
               </Avatar>
             }
@@ -102,8 +102,7 @@ const BlogCard = ({ displayData }) => {
         </CardActions>
       </Card>
 
-      {/* Blog Details Modal */}
-      <Modal size='xl' show={show} onHide={handleClose}>
+       <Modal size='xl' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             <h1 style={{ fontSize: '70px', fontWeight: '600' }} className='mt-5'>
